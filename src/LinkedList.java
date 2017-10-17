@@ -269,11 +269,4 @@ public class LinkedList<T> implements Iterable<T>
 
         public void remove() { throw new UnsupportedOperationException(); }
     }
-
-    /** Include Main */
-
-    public static void main(String[] args)
-    {
-        LinkedList<String> list = new LinkedList<String>();
-    }
 }
