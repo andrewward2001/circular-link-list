@@ -3,6 +3,7 @@
  */
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Node<T> implements Iterable<T> {
 
@@ -12,8 +13,25 @@ public class Node<T> implements Iterable<T> {
         root = null;
     }
 
-    public void addFirst(T item) {
+    public boolean isEmpty()
+    {
+        return root == null;
+    }
+
+    public void addFirst(T item)
+    {
+        root = new Node<T>(item, root);
+    }
+
+    public Iterator<T> iterator() {
+        return null;
+    }
+
+    public void forEach(Consumer<? super T> action) {
 
     }
 
+    public Spliterator<T> spliterator() {
+        return null;
+    }
 }
