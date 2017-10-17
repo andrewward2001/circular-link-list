@@ -6,9 +6,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 public class Node<T> implements Iterable<T> {
-
     private Node<T> root;
-
     public Node(){
         root = null;
     }
