@@ -47,9 +47,9 @@ public class LinkedList<T> implements Iterable<T> {
      */
 
     public T removeFirst() {
-        T tmp = getFirst();
+        T temp = getFirst();
         root = root.next;
-        return tmp;
+        return temp;
     }
 
     /**
@@ -63,9 +63,7 @@ public class LinkedList<T> implements Iterable<T> {
             Node<T> temp = root;
             while (temp.next != null) temp = temp.next;
 
-            temp.next = new Node <T> (item, null); // FIXME: 10/18/17
-            System.out.println(temp.next);
-
+            temp.next = new Node <T> (item, null);
         }
     }
 
