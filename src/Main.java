@@ -27,6 +27,7 @@ public class Main {
             Alist.add(line);
         }
 
+
         reader.close();
         return Alist;
     }
