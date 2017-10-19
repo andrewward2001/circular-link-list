@@ -26,7 +26,6 @@ public class Main {
             System.out.println(line);
             Alist.add(line);
         }
-
         reader.close();
         return Alist;
     }
