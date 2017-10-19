@@ -4,6 +4,8 @@
 
 import java.util.*;
 
+@SuppressWarnings("serial")
+
 public class LinkedList<T> implements Iterable<T> {
     private Node<T> root;
 
