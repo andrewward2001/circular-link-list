@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -9,7 +6,7 @@ public class Main {
         LinkedList<String> list = new LinkedList<>();
         ArrayList<String> fileStrings;
         try {
-            fileStrings = readFile("names.txt");
+            fileStrings = readFile("res"+ File.separator+"names.txt");
             fileStrings.forEach(list::addLast);
         } catch (IOException e) {
             e.printStackTrace();
