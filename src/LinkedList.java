@@ -68,7 +68,7 @@ public class LinkedList<T> implements Iterable<T> {
             }
 
 
-            temp.next = new Node<T>(item, root); // FIXME: 10/18/17 
+            temp.next = new Node<T>(item, root); // FIXME: 10/18/17
         }
     }
 
