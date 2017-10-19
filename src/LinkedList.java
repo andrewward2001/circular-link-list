@@ -61,14 +61,11 @@ public class LinkedList<T> implements Iterable<T> {
             addFirst(item);
         else {
             Node<T> temp = root;
-            int i = 0;
-            while (temp.next != root){
-                temp = temp.next;
-                i++;
-            }
+            while (temp.next != null) temp = temp.next;
 
+            temp.next = new Node <T> (item, null); // FIXME: 10/18/17
+            System.out.println(temp.next);
 
-            temp.next = new Node<T>(item, root); // FIXME: 10/18/17
         }
     }
 
@@ -79,10 +76,10 @@ public class LinkedList<T> implements Iterable<T> {
     public T getLast() {
         if (root == null) throw new NoSuchElementException();
 
-        Node<T> tmp = root;
-        while (tmp.next != null) tmp = tmp.next;
+        Node<T> temp = root;
+        while (temp.next != null) temp = temp.next;
 
-        return tmp.data;
+        return temp.data;
     }
 
     /**
