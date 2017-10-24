@@ -17,6 +17,10 @@ public class LinkedList<T> implements Iterable<T> {
         root = null;
     }
 
+    public Node<T> getRoot(){
+        return root;
+    }
+
     /**
      * Returns true if the list is empty
      */
@@ -194,41 +198,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * Returns a copy of the list
-     * Complexity: O(n^2)
-     */
-
-
-    public LinkedList<T> copy1() {
-        LinkedList<T> twin = new LinkedList<T>();
-        Node<T> temp = root;
-        while (temp != null) {
-            twin.addLast(temp.data);
-            temp = temp.next;
-        }
-
-        return twin;
-    }
-
-    /**
-     * Returns a copy of the list
-     * Complexity: O(n)
-     */
-
-    public LinkedList<T> copy2() {
-        LinkedList<T> twin = new LinkedList<T>();
-        Node<T> temp = root;
-        while (temp != null) {
-            twin.addFirst(temp.data);
-            temp = temp.next;
-        }
-
-        return twin.reverse();
-    }
-
-    /**
      * Reverses the list
-     * Complexity: O(n)
      */
 
     public LinkedList<T> reverse() {
@@ -239,27 +209,6 @@ public class LinkedList<T> implements Iterable<T> {
             temp = temp.next;
         }
         return list;
-    }
-
-    /**
-     * Returns a copy of the immutable list
-     * It uses a tail reference.
-     * Complexity: O(n)
-     */
-
-    public LinkedList<T> copy3() {
-        LinkedList<T> twin = new LinkedList<T>();
-        Node<T> temp = root;
-        if (root == null) return null;
-        twin.root = new Node<T>(root.data, null);
-        Node<T> tmpTwin = twin.root;
-        while (temp.next != null) {
-            temp = temp.next;
-            tmpTwin.next = new Node<T>(temp.data, null);
-            tmpTwin = tmpTwin.next;
-        }
-
-        return twin;
     }
 
     /*******************************************************
