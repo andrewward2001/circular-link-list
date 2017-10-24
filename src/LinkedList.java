@@ -9,6 +9,10 @@ import java.util.*;
 public class LinkedList<T> implements Iterable<T> {
     private Node<T> root;
 
+    public Node<T> getRoot() {
+        return root;
+    }
+
     /**
      * Constructs an empty list
      **/
@@ -63,10 +67,13 @@ public class LinkedList<T> implements Iterable<T> {
             addFirst(item);
         else {
             Node<T> temp = root;
-            while (temp.next != null) temp = temp.next;
-
-            temp.next = new Node <T> (item, null);
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = new Node<T>(item, null);
+            temp.next.prev = temp;
         }
+
     }
 
     /**
