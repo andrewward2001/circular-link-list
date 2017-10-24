@@ -9,6 +9,10 @@ import java.util.*;
 public class LinkedList<T> implements Iterable<T> {
     private Node<T> root;
 
+    public Node<T> getRoot() {
+        return root;
+    }
+
     /**
      * Constructs an empty list
      **/
@@ -63,10 +67,13 @@ public class LinkedList<T> implements Iterable<T> {
             addFirst(item);
         else {
             Node<T> temp = root;
-            while (temp.next != null) temp = temp.next;
-
-            temp.next = new Node <T> (item, null);
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = new Node<T>(item, null);
+            temp.next.prev = temp;
         }
+
     }
 
     /**
@@ -174,61 +181,28 @@ public class LinkedList<T> implements Iterable<T> {
 
         if (root.data.equals(key)) {
             root = root.next;
+            root.next.prev = null;
             return;
         }
 
         Node<T> current = root;
-        Node<T> previous = null;
 
-        while (current != null && !current.data.equals(key)) {
-            previous = current;
+        while (current != null && !current.data.equals(key) && current.next != null) {
             current = current.next;
         }
+
 
         if (current == null)
             throw new RuntimeException("ERROR -> Couldn't delete");
 
         /** delete cur node */
 
-        previous.next = current.next;
-    }
-
-    /**
-     * Returns a copy of the list
-     * Complexity: O(n^2)
-     */
-
-
-    public LinkedList<T> copy1() {
-        LinkedList<T> twin = new LinkedList<T>();
-        Node<T> temp = root;
-        while (temp != null) {
-            twin.addLast(temp.data);
-            temp = temp.next;
-        }
-
-        return twin;
-    }
-
-    /**
-     * Returns a copy of the list
-     * Complexity: O(n)
-     */
-
-    public LinkedList<T> copy2() {
-        LinkedList<T> twin = new LinkedList<T>();
-        Node<T> temp = root;
-        while (temp != null) {
-            twin.addFirst(temp.data);
-            temp = temp.next;
-        }
-
-        return twin.reverse();
+        if (current.prev != null)
+            current.prev.next = current.next;
     }
 
     /**
      * Reverses the list
-     * Complexity: O(n)
      */
 
     public LinkedList<T> reverse() {
@@ -239,27 +213,6 @@ public class LinkedList<T> implements Iterable<T> {
             temp = temp.next;
         }
         return list;
-    }
-
-    /**
-     * Returns a copy of the immutable list
-     * It uses a tail reference.
-     * Complexity: O(n)
-     */
-
-    public LinkedList<T> copy3() {
-        LinkedList<T> twin = new LinkedList<T>();
-        Node<T> temp = root;
-        if (root == null) return null;
-        twin.root = new Node<T>(root.data, null);
-        Node<T> tmpTwin = twin.root;
-        while (temp.next != null) {
-            temp = temp.next;
-            tmpTwin.next = new Node<T>(temp.data, null);
-            tmpTwin = tmpTwin.next;
-        }
-
-        return twin;
     }
 
     /*******************************************************

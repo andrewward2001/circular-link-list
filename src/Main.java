@@ -2,24 +2,38 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        LinkedList<String> list = new LinkedList<>();
+    public static void main(String[] args) {
+        LinkedList<String> list;
         ArrayList<String> fileStrings;
-        fileStrings = readFile("res" + File.separator + "names.txt");
-        fileStrings.forEach(list::addLast);
+        try {
+            list = new LinkedList<>();
+            fileStrings = readFile("res" + File.separator + "names.txt");
+            fileStrings.forEach(list::addLast);
+
+
+            list.remove("Two");
 
 
 
+            Node temp = list.getRoot();
+            for (int i = 0; i < 15; i++) {
+                System.out.println(temp.data);
+                temp = temp.getNext();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-
     public static ArrayList<String> readFile(String fileName) throws IOException {
-        ArrayList<String> list = new ArrayList<>();
+        ArrayList<String> Alist = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        while(reader.readLine() != null){
-            list.add(reader.readLine());
+        String line;
+        while ((line = reader.readLine()) != null) {
+            Alist.add(line);
         }
         reader.close();
-        return list;
+        return Alist;
     }
 }
