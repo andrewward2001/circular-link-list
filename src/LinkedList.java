@@ -21,10 +21,6 @@ public class LinkedList<T> implements Iterable<T> {
         root = null;
     }
 
-    public Node<T> getRoot(){
-        return root;
-    }
-
     /**
      * Returns true if the list is empty
      */
@@ -185,23 +181,24 @@ public class LinkedList<T> implements Iterable<T> {
 
         if (root.data.equals(key)) {
             root = root.next;
+            root.next.prev = null;
             return;
         }
 
         Node<T> current = root;
-        Node<T> previous = null;
 
-        while (current != null && !current.data.equals(key)) {
-            previous = current;
+        while (current != null && !current.data.equals(key) && current.next != null) {
             current = current.next;
         }
+
 
         if (current == null)
             throw new RuntimeException("ERROR -> Couldn't delete");
 
         /** delete cur node */
 
-        previous.next = current.next;
+        if (current.prev != null)
+            current.prev.next = current.next;
     }
 
     /**

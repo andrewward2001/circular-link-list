@@ -9,6 +9,11 @@ public class Main {
             list = new LinkedList<>();
             fileStrings = readFile("res" + File.separator + "names.txt");
             fileStrings.forEach(list::addLast);
+
+
+            list.remove("Two");
+
+
             Node temp = list.getRoot();
             for (int i = 0; i < 15; i++) {
                 System.out.println(temp.data);
