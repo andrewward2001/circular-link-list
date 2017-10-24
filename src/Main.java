@@ -14,6 +14,7 @@ public class Main {
             list.remove("Two");
 
 
+
             Node temp = list.getRoot();
             for (int i = 0; i < 15; i++) {
                 System.out.println(temp.data);
