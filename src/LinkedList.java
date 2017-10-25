@@ -7,11 +7,9 @@ import java.util.*;
 @SuppressWarnings("serial")
 
 public class LinkedList<T> implements Iterable<T> {
+
     private Node<T> root;
 
-    public Node<T> getRoot() {
-        return root;
-    }
 
     /**
      * Constructs an empty list
@@ -19,6 +17,11 @@ public class LinkedList<T> implements Iterable<T> {
 
     public LinkedList() {
         root = null;
+    }
+
+
+    public Node<T> getRoot(){
+        return root;
     }
 
     /**
@@ -180,8 +183,8 @@ public class LinkedList<T> implements Iterable<T> {
             throw new RuntimeException("ERROR -> Couldn't delete");
 
         if (root.data.equals(key)) {
-            root.next.prev = null;
             root = root.next;
+            root.next.prev = root;
             return;
         }
 

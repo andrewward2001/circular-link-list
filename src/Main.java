@@ -10,12 +10,9 @@ public class Main {
             fileStrings = readFile("res" + File.separator + "names.txt");
             fileStrings.forEach(list::addLast);
 
-            list.remove("One");
-
-
 
             Node temp = list.getRoot();
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < fileStrings.size() * 3; i++) {
                 System.out.println(temp.data);
                 temp = temp.getNext();
             }
@@ -25,7 +22,7 @@ public class Main {
         }
     }
 
-    private static ArrayList<String> readFile(String fileName) throws IOException {
+    public static ArrayList<String> readFile(String fileName) throws IOException {
         ArrayList<String> Alist = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
