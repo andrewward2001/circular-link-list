@@ -180,8 +180,8 @@ public class LinkedList<T> implements Iterable<T> {
             throw new RuntimeException("ERROR -> Couldn't delete");
 
         if (root.data.equals(key)) {
-            root = root.next;
             root.next.prev = null;
+            root = root.next;
             return;
         }
 

@@ -10,8 +10,7 @@ public class Main {
             fileStrings = readFile("res" + File.separator + "names.txt");
             fileStrings.forEach(list::addLast);
 
-
-            list.remove("Two");
+            list.remove("One");
 
 
 
@@ -26,7 +25,7 @@ public class Main {
         }
     }
 
-    public static ArrayList<String> readFile(String fileName) throws IOException {
+    private static ArrayList<String> readFile(String fileName) throws IOException {
         ArrayList<String> Alist = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String line;
