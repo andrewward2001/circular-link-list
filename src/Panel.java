@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 class Panel extends JPanel {
 
-    private Timer timer;
     private LinkedList<String> linkedList = new LinkedList<>();
     private ArrayList<Circle> circleList = new ArrayList<>();
     private int theta;
@@ -31,8 +30,10 @@ class Panel extends JPanel {
 
         theta = 360 / linkedList.size();
 
-        populateCircleList();
-
+        if (Main.getLinkedList().size() > 0) {
+            System.out.println("Size " + Main.getLinkedList().size());
+            populateCircleList();
+        }
 
 
         addMouseListener(new MouseListener() {
@@ -72,11 +73,11 @@ class Panel extends JPanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_B){
+                if (e.getKeyCode() == KeyEvent.VK_B) {
                     System.out.println("linked size " + linkedList.size());
                     System.out.println("circle size " + circleList.size());
                 }
-                if(e.getKeyCode() == KeyEvent.VK_C){
+                if (e.getKeyCode() == KeyEvent.VK_C) {
                     circleList.forEach(System.out::println);
                 }
             }
@@ -92,14 +93,17 @@ class Panel extends JPanel {
     public void paint(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         super.paint(g2);
-
-        theta = 360 / linkedList.size();
+        linkedList = Main.getLinkedList();
+        if (linkedList.size() != 0)
+            theta = 360 / linkedList.size();
 
         bigRadius = (getWidth() - smallDiameter) / 2;
 
         for (int i = 1; i <= linkedList.size(); i++) {
-            populateCircleList();
-            circleList.get(i - 1).draw(g2);
+            if (Main.getLinkedList().size() > 0) {
+                populateCircleList();
+                circleList.get(i - 1).draw(g2);
+            }
 //            g2.setColor(new Color(0,0,0));
 //            g2.fillOval((int)(bigRadius - bigRadius*(Math.cos(Math.toRadians(theta*i)))), (int)(bigRadius - bigRadius*(Math.sin(Math.toRadians(theta*i)))), 70, 70);
 //            g2.setColor(new Color(255, 255, 255));
@@ -108,11 +112,13 @@ class Panel extends JPanel {
         repaint();
     }
 
-    private void populateCircleList(){
+    private void populateCircleList() {
+
         circleList.clear();
-        for (int i = 1; i <= linkedList.size(); i++)
+        for (int i = 1; i <= linkedList.size(); i++) {
             circleList.add(new Circle((int) (bigRadius - bigRadius * (Math.cos(Math.toRadians(theta * i)))), (int) (bigRadius - bigRadius * (Math.sin(Math.toRadians(theta * i)))), smallDiameter, linkedList.get(i - 1)));
 
+        }
     }
 
 }
