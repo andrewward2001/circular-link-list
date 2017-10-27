@@ -1,15 +1,18 @@
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Main extends JPanel{
-
-    static String names = "";
-    static ArrayList<String> namesArrayList = new ArrayList<>();
-    static int size = 600;
-
+public class Main {
     public static void main(String[] args) {
+
+        JFrame window = new JFrame("circular linked lists!");
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window.setBounds(0, 0, 800, 800); //(x, y, w, h)
+        Panel panel = new Panel();
+        panel.setFocusable(true);
+        panel.grabFocus();
+        window.add(panel);
+        window.setVisible(true);
+
 
 
         JFrame window = new JFrame("Display");
@@ -88,10 +91,7 @@ public class Main extends JPanel{
             fileStrings = readFile("res" + File.separator + "names.txt");
             fileStrings.forEach(list::addLast);
 
-
-            list.remove("Two");
-
-
+            list.remove("One");
 
             Node temp = list.getRoot();
             for (int i = 0; i < 15; i++) {
