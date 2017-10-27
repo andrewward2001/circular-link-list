@@ -6,10 +6,10 @@ import java.awt.*;
 class Circle {
     private int x;
     private int y;
-    private String data;
+    private Object data;
     private int diam;
 
-    public Circle(int x, int y, int diam, String data){
+    public Circle(int x, int y, int diam, Object data){
         this.x = x;
         this.y = y;
         this.diam = diam;
@@ -20,7 +20,7 @@ class Circle {
         return Math.abs(x - x2) <= 20 && Math.abs(y - y2) <= 20;
     }
 
-    public String getData() {
+    public Object getData() {
         return data;
     }
 
@@ -28,7 +28,7 @@ class Circle {
         g2.setColor(new Color(0,0,0));
         g2.fillOval(x, y, diam, diam);
         g2.setColor(new Color(255, 255, 255));
-        g2.drawString(data, x+diam/4, y+diam/2);
+        g2.drawString(data.toString(), x+diam/4, y+diam/2);
     }
 
     @Override
