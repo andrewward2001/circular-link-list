@@ -13,14 +13,14 @@ import java.util.ArrayList;
  */
 class Panel extends JPanel {
 
-    private LinkedList<String> linkedList = new LinkedList<>();
-    private ArrayList<Circle> circleList = new ArrayList<>();
+    private LinkedList<String> linkedList = new LinkedList<String>();
+    private ArrayList<Circle> circleList = new ArrayList<Circle>();
     private int theta;
     private int smallDiameter = 70;
     private int bigRadius = (getWidth() - smallDiameter) / 2;
 
-    Panel() {
-        ArrayList<String> names = new ArrayList<>();
+    public Panel() {
+        ArrayList<String> names = new ArrayList<String>();
         try {
             names = Main.readFile("res" + File.separator + "names.txt");
         } catch (IOException e) {
@@ -34,7 +34,6 @@ class Panel extends JPanel {
             System.out.println("Size " + Main.getLinkedList().size());
             populateCircleList();
         }
-
 
         addMouseListener(new MouseListener() {
             @Override
@@ -104,21 +103,15 @@ class Panel extends JPanel {
                 populateCircleList();
                 circleList.get(i - 1).draw(g2);
             }
-//            g2.setColor(new Color(0,0,0));
-//            g2.fillOval((int)(bigRadius - bigRadius*(Math.cos(Math.toRadians(theta*i)))), (int)(bigRadius - bigRadius*(Math.sin(Math.toRadians(theta*i)))), 70, 70);
-//            g2.setColor(new Color(255, 255, 255));
-//            g2.drawString(linkedList.get(i-1), (int)(bigRadius - bigRadius*(Math.cos(Math.toRadians(theta*i))))+smallDiameter/2, (int)(bigRadius - bigRadius*(Math.sin(Math.toRadians(theta*i))))+smallDiameter/2);
         }
         repaint();
     }
 
-    private void populateCircleList() {
+    public void populateCircleList() {
 
         circleList.clear();
         for (int i = 1; i <= linkedList.size(); i++) {
             circleList.add(new Circle((int) (bigRadius - bigRadius * (Math.cos(Math.toRadians(theta * i)))), (int) (bigRadius - bigRadius * (Math.sin(Math.toRadians(theta * i)))), smallDiameter, linkedList.get(i - 1)));
-
         }
     }
-
 }

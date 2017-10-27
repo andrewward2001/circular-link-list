@@ -18,7 +18,7 @@ class LinkedList<T> implements Iterable<T> {
      * Constructs an empty list
      **/
 
-    LinkedList() {
+    public LinkedList() {
         root = null;
     }
 
@@ -81,7 +81,7 @@ class LinkedList<T> implements Iterable<T> {
      * Returns the last element in the list.
      */
 
-    T getLast() {
+    public T getLast() {
         if (root == null) throw new NoSuchElementException();
 
         Node<T> temp = root;
@@ -113,7 +113,7 @@ class LinkedList<T> implements Iterable<T> {
      * Returns the data at the specified position in the list.
      */
 
-    T get(int pos) {
+    public T get(int pos) {
         if (root == null) throw new IndexOutOfBoundsException();
 
         Node<T> tmp = root;
@@ -221,11 +221,17 @@ class LinkedList<T> implements Iterable<T> {
         return list;
     }
 
+    public void printList(ArrayList<String> s){
+        for (String st : s) {
+            System.out.println(st);
+        }
+    }
+
     /**
      * Returns size of list
      */
 
-    int size(){
+    public int size(){
         return size;
     }
 

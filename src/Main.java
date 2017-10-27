@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public class Main {
 
-    static int size = 800;
-    static LinkedList<String> linkedList = new LinkedList<>();
+    static int size = 600;
+    static LinkedList<String> linkedList = new LinkedList<String>();
 
     public static void main(String[] args) {
 
@@ -37,7 +37,7 @@ public class Main {
 
         ArrayList<String> fileStrings = new ArrayList<>(); //
         JButton runScriptButton = new JButton("Run Script");
-        runScriptButton.setSize(100, 50);
+        runScriptButton.setSize(100, 25);
         ArrayList<String> finalFileStrings = fileStrings;
 
         runScriptButton.addActionListener(e -> {
@@ -52,7 +52,7 @@ public class Main {
             for (String s : namesList) {
                 finalFileStrings.add(s);
             }
-
+            finalFileStrings.forEach(linkedList::addLast);
             finalFileStrings.forEach(System.out::println);
 
 

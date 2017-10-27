@@ -3,6 +3,7 @@ import java.awt.*;
 /**
  * Created by student on 10/25/17.
  */
+
 class Circle {
     private int x;
     private int y;
@@ -24,7 +25,7 @@ class Circle {
         return data;
     }
 
-    void draw(Graphics2D g2){
+    public void draw(Graphics2D g2){
         g2.setColor(new Color(0,0,0));
         g2.fillOval(x, y, diam, diam);
         g2.setColor(new Color(255, 255, 255));
