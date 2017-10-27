@@ -1,29 +1,28 @@
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 
-public class Main {
+
+public class Main extends JPanel{
+
+    static int size = 800;
+
     public static void main(String[] args) {
 
         JFrame window = new JFrame("circular linked lists!");
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setBounds(0, 0, 800, 800); //(x, y, w, h)
-        Panel panel = new Panel();
-        panel.setFocusable(true);
-        panel.grabFocus();
-        window.add(panel);
-        window.setVisible(true);
 
 
 
-        JFrame window = new JFrame("Display");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(size, size);
-        window.setVisible(true);
+
 
         Main panel = new Main();
         panel.setFocusable(true);
         panel.grabFocus();
         window.add(panel);
+        window.setVisible(true);
 
         JFrame textWindow = new JFrame("Write your script here...");
         textWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,25 +43,27 @@ public class Main {
 
 
 
-        ArrayList<String> fileStrings; //
+        ArrayList<String> fileStrings = new ArrayList<String>(); //
         JButton runScriptButton = new JButton("Run Script");
         runScriptButton.setSize(100,50);
+        ArrayList<String> finalFileStrings = fileStrings;
+
         runScriptButton.addActionListener(e -> {
 
 
 
         //convert the list to something
-            names = textArea.getText();
+            String names = textArea.getText();
             System.out.println(textArea.getText());
 
             String[] namesList = names.split("\n");
-            namesArrayList.clear();
+            finalFileStrings.clear();
             for (String s: namesList) {
-                namesArrayList.add(s);
+                finalFileStrings.add(s);
             }
 
-            for (int i = 0; i < namesArrayList.size(); i++) {
-                System.out.println(namesArrayList.get(i));
+            for (int i = 0; i < finalFileStrings.size(); i++) {
+                System.out.println(finalFileStrings.get(i));
             }
 
 
@@ -82,26 +83,31 @@ public class Main {
         textWindow.add(runScriptButton);
 
 
+        LinkedList<Node> linkedList = new LinkedList<Node>();
+        for (String s: finalFileStrings) {
 
-        LinkedList<String> list;
-//        ArrayList<String> fileStrings;
-
-        try {
-            list = new LinkedList<>();
-            fileStrings = readFile("res" + File.separator + "names.txt");
-            fileStrings.forEach(list::addLast);
-
-            list.remove("One");
-
-            Node temp = list.getRoot();
-            for (int i = 0; i < 15; i++) {
-                System.out.println(temp.data);
-                temp = temp.getNext();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+
+//        LinkedList<String> list;
+////        ArrayList<String> fileStrings;
+//
+//        try {
+//            list = new LinkedList<>();
+//            fileStrings = readFile("res" + File.separator + "names.txt");
+//            fileStrings.forEach(list::addLast);
+//
+//            list.remove("One");
+//
+//            Node temp = list.getRoot();
+//            for (int i = 0; i < 15; i++) {
+//                System.out.println(temp.data);
+//                temp = temp.getNext();
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public static ArrayList<String> readFile(String fileName) throws IOException {
