@@ -6,22 +6,20 @@ import java.util.*;
 
 @SuppressWarnings("serial")
 
-public class LinkedList<T> implements Iterable<T> {
-
+class LinkedList<T> implements Iterable<T> {
     private Node<T> root;
+    private int size;
 
+    Node<T> getRoot() {
+        return root;
+    }
 
     /**
      * Constructs an empty list
      **/
 
-    public LinkedList() {
+    LinkedList() {
         root = null;
-    }
-
-
-    public Node<T> getRoot(){
-        return root;
     }
 
     /**
@@ -37,7 +35,7 @@ public class LinkedList<T> implements Iterable<T> {
      * This root references itself
      */
 
-    public void addFirst(T item) {
+    private void addFirst(T item) {
         root = new Node<>(item, root);
     }
 
@@ -45,7 +43,7 @@ public class LinkedList<T> implements Iterable<T> {
      * Returns the first element in the list.
      */
 
-    public T getFirst() {
+    private T getFirst() {
         if (root == null) throw new NoSuchElementException();
 
         return root.data;
@@ -65,7 +63,7 @@ public class LinkedList<T> implements Iterable<T> {
      * Inserts a new node to the end of this list.
      */
 
-    public void addLast(T item) {
+    void addLast(T item) {
         if (root == null)
             addFirst(item);
         else {
@@ -73,17 +71,17 @@ public class LinkedList<T> implements Iterable<T> {
             while (temp.next != null) {
                 temp = temp.next;
             }
-            temp.next = new Node<T>(item, null);
+            temp.next = new Node<>(item, null);
             temp.next.prev = temp;
         }
-
+        size++;
     }
 
     /**
      * Returns the last element in the list.
      */
 
-    public T getLast() {
+    T getLast() {
         if (root == null) throw new NoSuchElementException();
 
         Node<T> temp = root;
@@ -98,13 +96,14 @@ public class LinkedList<T> implements Iterable<T> {
 
     public void clear() {
         root = null;
+        size = 0;
     }
 
     /**
      * Returns true if this list contains the specified element.
      */
     public boolean contains(T x) {
-        for (T tmp : this)
+        for (T tmp: this)
             if (tmp.equals(x)) return true;
 
         return false;
@@ -114,7 +113,7 @@ public class LinkedList<T> implements Iterable<T> {
      * Returns the data at the specified position in the list.
      */
 
-    public T get(int pos) {
+    T get(int pos) {
         if (root == null) throw new IndexOutOfBoundsException();
 
         Node<T> tmp = root;
@@ -132,7 +131,7 @@ public class LinkedList<T> implements Iterable<T> {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for (Object x : this)
-            result.append(x + " ");
+            result.append(x).append(" ");
 
         return result.toString();
     }
@@ -147,7 +146,7 @@ public class LinkedList<T> implements Iterable<T> {
         while (tmp != null && !tmp.data.equals(key)) tmp = tmp.next;
 
         if (tmp != null)
-            tmp.next = new Node<T>(toInsert, tmp.next);
+            tmp.next = new Node<>(toInsert, tmp.next);
     }
 
     /**
@@ -170,21 +169,23 @@ public class LinkedList<T> implements Iterable<T> {
             current = current.next;
         }
         //insert between cur and prev
-        if (current != null)
-            previous.next = new Node<T>(toInsert, current);
+        if (current != null) {
+            assert previous != null;
+            previous.next = new Node<>(toInsert, current);
+        }
     }
 
     /**
      * Removes the first occurrence of the specified element in this list.
      */
 
-    public void remove(T key) {
+    void remove(T key) {
         if (root == null)
             throw new RuntimeException("ERROR -> Couldn't delete");
 
         if (root.data.equals(key)) {
+            root.next.prev = null;
             root = root.next;
-            root.next.prev = root;
             return;
         }
 
@@ -198,10 +199,12 @@ public class LinkedList<T> implements Iterable<T> {
         if (current == null)
             throw new RuntimeException("ERROR -> Couldn't delete");
 
-        /** delete cur node */
+        /* delete cur node */
 
         if (current.prev != null)
             current.prev.next = current.next;
+
+        size--;
     }
 
     /**
@@ -209,13 +212,21 @@ public class LinkedList<T> implements Iterable<T> {
      */
 
     public LinkedList<T> reverse() {
-        LinkedList<T> list = new LinkedList<T>();
+        LinkedList<T> list = new LinkedList<>();
         Node<T> temp = root;
         while (temp != null) {
             list.addFirst(temp.data);
             temp = temp.next;
         }
         return list;
+    }
+
+    /**
+     * Returns size of list
+     */
+
+    int size(){
+        return size;
     }
 
     /*******************************************************
@@ -231,7 +242,7 @@ public class LinkedList<T> implements Iterable<T> {
     private class LinkedListIterator implements Iterator<T> {
         private Node<T> nextNode;
 
-        public LinkedListIterator() {
+        LinkedListIterator() {
             nextNode = root;
         }
 
@@ -250,4 +261,5 @@ public class LinkedList<T> implements Iterable<T> {
             throw new UnsupportedOperationException();
         }
     }
+
 }
