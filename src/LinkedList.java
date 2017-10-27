@@ -103,7 +103,7 @@ class LinkedList<T> implements Iterable<T> {
      * Returns true if this list contains the specified element.
      */
     public boolean contains(T x) {
-        for (T tmp : this)
+        for (T tmp: this)
             if (tmp.equals(x)) return true;
 
         return false;

@@ -84,8 +84,8 @@ public class Main extends JPanel{
 
 
         LinkedList<Node> linkedList = new LinkedList<Node>();
-        for (String s: finalFileStrings) {
-
+        for (int i = 0; i < finalFileStrings.size(); i++) {
+            linkedList.addLast(new Node(finalFileStrings.get(i), linkedList.getRoot()));
         }
 
 
